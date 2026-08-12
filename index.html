@@ -1,0 +1,1106 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <title>Arjun Krishna B — Cybersecurity & UI Developer Portfolio</title>
+  <meta name="description" content="Portfolio of Arjun Krishna B — Cybersecurity Analyst & UI Developer specializing in FortiGate Firewalls, Threat Detection, Python Tooling, and Web UI Systems." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- TOP HEADER / TECHNICAL NAVIGATION STATUS BAR -->
+  <header class="tech-header">
+    <div class="header-container">
+      <div class="header-left">
+        <span class="sys-id">PORTFOLIO — INDEX № 001</span>
+        <span class="sys-sep">|</span>
+        <span class="sys-loc">KOCHI, IN — 09.93° N, 76.26° E</span>
+      </div>
+      <div class="header-right">
+        <span class="sys-clock" id="liveClock">00:00:00</span>
+        
+        <!-- ADMIN RESUME UPLOAD BUTTON (VISIBLE WHEN ADMIN IS ON) -->
+        <button id="uploadResumeBtn" class="theme-toggle-btn admin-btn" onclick="triggerResumeUpload()" title="Upload new Resume PDF File" style="display:none;">
+          <span class="theme-icon">📄</span>
+          <span class="admin-text">UPLOAD RESUME</span>
+        </button>
+
+        <!-- VIEW RECEIVED MESSAGES BUTTON (VISIBLE WHEN ADMIN IS ON) -->
+        <button id="viewMessagesBtn" class="theme-toggle-btn admin-btn" onclick="openMessagesModal()" title="View Received Messages" style="display:none;">
+          <span class="theme-icon">✉</span>
+          <span class="admin-text">MESSAGES</span>
+        </button>
+
+        <!-- CHANGE PASSCODE BUTTON (VISIBLE WHEN ADMIN IS ON) -->
+        <button id="changePassBtn" class="theme-toggle-btn admin-btn" onclick="openChangePasscodeModal()" title="Change Admin Passcode" style="display:none;">
+          <span class="theme-icon">🔑</span>
+          <span class="admin-text">CHANGE KEY</span>
+        </button>
+
+        <!-- TOGGLE PROFILE PHOTO DISPLAY (VISIBLE WHEN ADMIN IS ON) -->
+        <button id="togglePhotoDisplayBtn" class="theme-toggle-btn admin-btn" onclick="toggleProfilePhotoDisplay()" title="Toggle Profile Photo Display in WHOAMI Section" style="display:none;">
+          <span class="theme-icon">📸</span>
+          <span class="admin-text" id="togglePhotoBtnText">PHOTO: OFF</span>
+        </button>
+
+        <!-- ADMIN MODE TOGGLE WITH PASSCODE VERIFICATION -->
+        <button id="adminToggleBtn" class="theme-toggle-btn admin-btn" onclick="handleAdminToggleClick()" title="Toggle Content Management Mode (Requires Passcode)">
+          <span class="theme-icon">⚙</span>
+          <span class="admin-text" id="adminToggleText">MANAGE MODE: OFF</span>
+        </button>
+
+        <!-- THEME SELECTOR BUTTON (WHITE BLUEPRINT / BLACK CYBER) -->
+        <button id="themeToggleBtn" class="theme-toggle-btn" title="Switch Design Mode: White Blueprint / Black Cyber">
+          <span class="theme-icon">◐</span>
+          <span class="theme-text">DESIGN: WHITE BLUEPRINT</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hidden File Input for Resume PDF Upload -->
+  <input type="file" id="resumeFileInput" accept="application/pdf" style="display:none;" onchange="handleResumePdfUpload(event)" />
+
+  <main class="main-wrapper">
+
+    <!-- HERO / BANNER SECTION -->
+    <section class="hero-section">
+      <div class="hero-container">
+        <div class="hero-top-line">
+          <span class="tag-label">SYSTEM_INITIALIZED // SEC_UI_OPS_V2.5</span>
+          <span class="badge-open">
+            <span class="status-dot"></span>
+            OPEN TO ROLES
+          </span>
+        </div>
+
+        <div class="hero-title-container">
+          <h1 class="hero-title">
+            <span id="typewriterText"></span><span class="blinking-cursor"></span>
+          </h1>
+        </div>
+
+        <p class="hero-subtitle">
+          Cybersecurity Analyst &nbsp;·&nbsp; Web UI Developer &nbsp;·&nbsp; Kochi, Kerala, India
+        </p>
+
+        <div class="hero-meta-row">
+          <div class="meta-item">
+            <span class="meta-key">FOCUS</span>
+            <span class="meta-val">FortiGate Firewalls · IPsec VPN · Threat Detection · Web UI Systems · Python</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-key">STATUS</span>
+            <span class="meta-val highlight-green">Open to Cybersecurity Analyst, SOC Analyst, Network Security & UI Engineering Roles</span>
+          </div>
+        </div>
+
+        <div class="quick-links-bar">
+          <a id="heroResumeBtn" href="/uploads/resume.pdf" target="_blank" rel="noopener noreferrer" class="tech-btn">
+            <span class="btn-prefix">[01]</span> RESUME
+          </a>
+          <a href="https://linkedin.com/in/arjunn100" target="_blank" rel="noopener noreferrer" class="tech-btn">
+            <span class="btn-prefix">[02]</span> LINKEDIN
+          </a>
+          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=arjunkb45@gmail.com" target="_blank" rel="noopener noreferrer" class="tech-btn">
+            <span class="btn-prefix">[03]</span> EMAIL
+          </a>
+          <a href="#terminal-section" class="tech-btn tech-btn-accent">
+            <span class="btn-prefix">&gt;_</span> CLI TERMINAL
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 01: WHOAMI -->
+    <section class="blueprint-section" id="whoami">
+      <div class="section-header">
+        <div class="sec-left">
+          <span class="sec-num">01</span>
+          <h2 class="sec-title">WHOAMI</h2>
+        </div>
+        <div class="sec-right">~/01-whoami</div>
+      </div>
+
+      <div class="section-content whoami-wrapper">
+        <div class="profile-card-col">
+          <div class="profile-photo-frame">
+            <img id="whoamiProfileImg" src="" alt="Arjun Krishna B" style="display:none;" />
+            <div id="whoamiProfileFallback" class="profile-fallback">
+              <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+              <span class="fallback-text">PORTRAIT // NULL</span>
+            </div>
+          </div>
+          <button id="changeProfilePhotoBtn" class="tech-btn profile-upload-btn" style="display:none;" onclick="triggerProfilePhotoUpload()">[⇪ CHANGE PHOTO]</button>
+        </div>
+
+        <div class="whoami-details-col">
+          <p class="bio-text">
+            Cybersecurity graduate (BCA with AIML specialization) from <strong>Vellore Institute of Technology (VIT)</strong>.
+            Hands-on experience configuring FortiGate firewalls, IPsec VPNs, firewall policies, NAT, VLANs, and monitoring security logs — backed by Python tooling for vulnerability scanning, AI threat detection, and front-end Web UI development experience at Techgentsia Software Technologies.
+          </p>
+
+          <div class="kv-grid">
+            <div class="kv-row">
+              <div class="kv-key">CORE FOCUS</div>
+              <div class="kv-val">Network Security · FortiGate Firewalls · SOC Monitoring · Web UI Systems · AI Threat Detection</div>
+            </div>
+            <div class="kv-row">
+              <div class="kv-key">CURRENT STATUS</div>
+              <div class="kv-val">
+                <span class="status-pulse-inline"></span>
+                Open to Cybersecurity Analyst, SOC Analyst, Network Security & UI Engineer roles
+              </div>
+            </div>
+            <div class="kv-row">
+              <div class="kv-key">EDUCATION</div>
+              <div class="kv-val">BCA (AIML Specialization) — VIT Vellore · 2023–2026 · CGPA 7.67 / 10</div>
+            </div>
+            <div class="kv-row">
+              <div class="kv-key">LOCATION</div>
+              <div class="kv-val">Kochi, Kerala, India</div>
+            </div>
+            <div class="kv-row">
+              <div class="kv-key">LANGUAGES</div>
+              <div class="kv-val">
+                <span class="lang-tag">EN</span>
+                <span class="lang-tag">TA</span>
+                <span class="lang-tag">HI</span>
+                <span class="lang-tag">ML</span>
+                &nbsp; (English, Tamil, Hindi, Malayalam)
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 02: MINIMAL CAD SECURITY SPECIFICATION MATRIX -->
+    <section class="blueprint-section" id="systemmap">
+      <div class="section-header">
+        <div class="sec-left">
+          <span class="sec-num">02</span>
+          <h2 class="sec-title">MINIMAL CAD SECURITY SPECIFICATION MATRIX</h2>
+        </div>
+        <div class="sec-right">DWG № 002 // SYSTEM PIPELINE SPECIFICATIONS</div>
+      </div>
+
+      <div class="section-content">
+        <p class="section-instruction">
+          <span class="terminal-prompt">$</span> Click any security system card below to inspect architecture specs, interface ports & operational telemetry logs.
+        </p>
+
+        <!-- Minimal CAD Spec Matrix Container -->
+        <div class="minimal-cad-container">
+          <div class="noc-matrix-header">
+            <div class="noc-header-tags">
+              <span class="hud-badge highlight-green">● STATUS: 100% OPERATIONAL</span>
+              <span class="hud-badge" id="livePacketCounter">PACKET STREAM: 1,428,950 PKTS/S</span>
+              
+              <!-- Frequency Spectrum Wave Equalizer -->
+              <div class="freq-spectrum-wave" title="Live Frequency Spectrum">
+                <span class="freq-bar b1"></span>
+                <span class="freq-bar b2"></span>
+                <span class="freq-bar b3"></span>
+                <span class="freq-bar b4"></span>
+                <span class="freq-bar b5"></span>
+                <span class="freq-bar b6"></span>
+                <span class="freq-bar b7"></span>
+                <span class="freq-bar b8"></span>
+                <span class="freq-bar b9"></span>
+                <span class="freq-bar b10"></span>
+              </div>
+            </div>
+
+            <!-- Terminal CLI Live Command Stream Ticker -->
+            <div class="noc-cli-stream-box">
+              <span class="cli-icon">&gt;_</span>
+              <span id="nocTerminalStream" class="cli-text">&gt; [SYS_EXEC] fortigate_inspect --vlan 10 --traffic OK</span>
+            </div>
+          </div>
+
+          <!-- Minimal CAD 3-Column Spec Cards Grid -->
+          <div class="minimal-cad-grid">
+            <!-- 01 // FortiGate Firewall -->
+            <div class="minimal-cad-card map-node" data-node-id="fortigate">
+              <div class="min-card-top">
+                <span class="min-card-num">[01]</span>
+                <span class="min-card-cat">PERIMETER DEFENSE</span>
+                <div class="noc-card-status"><span class="noc-status-led"></span>ACTIVE</div>
+              </div>
+              <div class="min-card-title">FortiGate Firewall Engine</div>
+              <div class="min-card-desc">Stateful Inspection, IPsec VPN tunnels, VLAN segmentation & NAT gateway policies.</div>
+              <div class="min-card-meta">
+                <span>PORT: 443</span>
+                <span>INTERFACE: eth0</span>
+                <span>POLICY: STATEFUL</span>
+              </div>
+            </div>
+
+            <!-- 02 // Vulnerability Scanner -->
+            <div class="minimal-cad-card map-node" data-node-id="vulnscanner">
+              <div class="min-card-top">
+                <span class="min-card-num">[02]</span>
+                <span class="min-card-cat">CVE DISCOVERY</span>
+                <div class="noc-card-status"><span class="noc-status-led"></span>ONLINE</div>
+              </div>
+              <div class="min-card-title">Automated Vulnerability Scanner</div>
+              <div class="min-card-desc">Python-Nmap multi-threaded host discovery, service enumeration & CVE triage.</div>
+              <div class="min-card-meta">
+                <span>CONCURRENCY: THREADS</span>
+                <span>ENGINE: NMAP</span>
+                <span>EXPORT: JSON</span>
+              </div>
+            </div>
+
+            <!-- 03 // Packet Sniffer CLI -->
+            <div class="minimal-cad-card map-node" data-node-id="packetsniffer">
+              <div class="min-card-top">
+                <span class="min-card-num">[03]</span>
+                <span class="min-card-cat">RAW CAPTURE</span>
+                <div class="noc-card-status"><span class="noc-status-led"></span>SNIFFING</div>
+              </div>
+              <div class="min-card-title">Packet Sniffer CLI</div>
+              <div class="min-card-desc">Real-time socket header decoding (IPv4/v6, TCP, UDP, ICMP, DNS) & PCAP export.</div>
+              <div class="min-card-meta">
+                <span>SOCKET: RAW_BPF</span>
+                <span>EXPORT: PCAP</span>
+                <span>DECODE: IPv4/v6</span>
+              </div>
+            </div>
+
+            <!-- 04 // Traffic Protocol Analyzer -->
+            <div class="minimal-cad-card map-node" data-node-id="trafficanalyzer">
+              <div class="min-card-top">
+                <span class="min-card-num">[04]</span>
+                <span class="min-card-cat">DEEP INSPECTION</span>
+                <div class="noc-card-status"><span class="noc-status-led"></span>ACTIVE</div>
+              </div>
+              <div class="min-card-title">Traffic Protocol Analyzer</div>
+              <div class="min-card-desc">Deep Packet Inspection (DPI) for DNS query logs, HTTP headers & payload decoding.</div>
+              <div class="min-card-meta">
+                <span>ENGINE: SCAPY</span>
+                <span>DPI: HTTP/DNS</span>
+                <span>ANALYTICS: DPI</span>
+              </div>
+            </div>
+
+            <!-- 05 // Core Ingress Gateway -->
+            <div class="minimal-cad-card min-card-core map-node" data-node-id="core">
+              <div class="min-card-top">
+                <span class="min-card-num">[05]</span>
+                <span class="min-card-cat">CENTRAL CONTROL</span>
+                <div class="noc-card-status"><span class="noc-status-led"></span>ONLINE</div>
+              </div>
+              <div class="min-card-title">ARJUN.SEC Core Gateway</div>
+              <div class="min-card-desc">Unified control plane coordinating firewall alerts, packet streams & UI views.</div>
+              <div class="min-card-meta">
+                <span>THROUGHPUT: 10 GBPS</span>
+                <span>HUB: PIPELINE</span>
+                <span>LATENCY: 0.8ms</span>
+              </div>
+            </div>
+
+            <!-- 06 // AI Threat Detection System -->
+            <div class="minimal-cad-card map-node" data-node-id="aithreat">
+              <div class="min-card-top">
+                <span class="min-card-num">[06]</span>
+                <span class="min-card-cat">AI ANOMALY</span>
+                <div class="noc-card-status"><span class="noc-status-led"></span>MONITORING</div>
+              </div>
+              <div class="min-card-title">AI Threat Detection System</div>
+              <div class="min-card-desc">Isolation Forest machine learning models detecting suspicious telemetry anomalies.</div>
+              <div class="min-card-meta">
+                <span>MODEL: ISOLATION_FOREST</span>
+                <span>UI: STREAMLIT</span>
+                <span>ACCURACY: 99.4%</span>
+              </div>
+            </div>
+
+            <!-- 07 // Fake Job NLP Detector -->
+            <div class="minimal-cad-card map-node" data-node-id="fakejob">
+              <div class="min-card-top">
+                <span class="min-card-num">[07]</span>
+                <span class="min-card-cat">NLP FRAUD</span>
+                <div class="noc-card-status"><span class="noc-status-led"></span>VERIFIED</div>
+              </div>
+              <div class="min-card-title">Fake Job NLP Detector</div>
+              <div class="min-card-desc">Text vectorization (TF-IDF) classifying fraudulent job descriptions with high precision.</div>
+              <div class="min-card-meta">
+                <span>VECTORIZER: TF-IDF</span>
+                <span>ML: SCIKIT</span>
+                <span>NLP: NLTK</span>
+              </div>
+            </div>
+
+            <!-- 08 // SOC Log Triage -->
+            <div class="minimal-cad-card map-node" data-node-id="soc">
+              <div class="min-card-top">
+                <span class="min-card-num">[08]</span>
+                <span class="min-card-cat">INCIDENT TRIAGE</span>
+                <div class="noc-card-status"><span class="noc-status-led"></span>ACTIVE</div>
+              </div>
+              <div class="min-card-title">SOC Log Triage Engine</div>
+              <div class="min-card-desc">IPS alert monitoring, Web Filtering logs & correlated threat incident triage.</div>
+              <div class="min-card-meta">
+                <span>TRIAGE: IPS_ALERTS</span>
+                <span>LOGS: CORRELATED</span>
+                <span>POLICY: PASS</span>
+              </div>
+            </div>
+
+            <!-- 09 // Web UI Systems -->
+            <div class="minimal-cad-card map-node" data-node-id="uiweb">
+              <div class="min-card-top">
+                <span class="min-card-num">[09]</span>
+                <span class="min-card-cat">FRONT-END ENGINE</span>
+                <div class="noc-card-status"><span class="noc-status-led"></span>RESPONSIVE</div>
+              </div>
+              <div class="min-card-title">Web UI Development Engine</div>
+              <div class="min-card-desc">Techgentsia Software component design, CAD blueprint themes & DOM APIs.</div>
+              <div class="min-card-meta">
+                <span>THEME: CAD_BLUEPRINT</span>
+                <span>UI: TECHGENTSIA</span>
+                <span>DOM: 60_FPS</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="noc-matrix-footer">
+            <div class="hud-stat">
+              <span class="stat-lbl">PIPELINE THROUGHPUT</span>
+              <span class="stat-val">10.0 GBPS BANDWIDTH</span>
+            </div>
+            <div class="hud-stat">
+              <span class="stat-lbl">FIREWALL SEGMENT</span>
+              <span class="stat-val highlight-green">FORTIGATE VLAN PASS</span>
+            </div>
+            <div class="hud-stat">
+              <span class="stat-lbl">FRAME RATE PERFORMANCE</span>
+              <span class="stat-val">60 FPS BUTTER SMOOTH</span>
+            </div>
+            <div class="hud-stat">
+              <span class="stat-lbl">SECURITY LATENCY</span>
+              <span class="stat-val">0.8 MS RESPONSE</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 03: CYBERSECURITY, ML & TECHNICAL PROJECTS -->
+    <section class="blueprint-section" id="other-projects">
+      <div class="section-header">
+        <div class="sec-left">
+          <span class="sec-num">03</span>
+          <h2 class="sec-title">CYBERSECURITY, ML & TECHNICAL PROJECTS</h2>
+        </div>
+        <div class="sec-right">~/03-tech-projects</div>
+      </div>
+
+      <div class="section-content">
+        
+        <!-- Controls Bar: Category Filters & Add Technical Project Action -->
+        <div class="project-actions-bar">
+          <div class="filter-controls" id="filterControls">
+            <button class="filter-btn active" data-filter="all">ALL TECHNICAL</button>
+            <button class="filter-btn" data-filter="security">SECURITY OPS</button>
+            <button class="filter-btn" data-filter="ml">ML & AI</button>
+            <button class="filter-btn" data-filter="python">PYTHON TOOLS</button>
+          </div>
+
+          <div class="admin-actions">
+            <button class="add-proj-btn" onclick="openAddProjectModal('security')">
+              [+] ADD TECHNICAL PROJECT
+            </button>
+          </div>
+        </div>
+
+        <!-- Dynamic Technical Projects Grid Rendered via JS -->
+        <div class="projects-grid" id="otherProjectsContainer">
+          <!-- Rendered dynamically by script.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 04: UI / UX DEVELOPMENT & FRONT-END PROJECTS -->
+    <section class="blueprint-section" id="ui-projects">
+      <div class="section-header">
+        <div class="sec-left">
+          <span class="sec-num">04</span>
+          <h2 class="sec-title">UI / UX DEVELOPMENT & FRONT-END PROJECTS</h2>
+        </div>
+        <div class="sec-right">~/04-ui-projects</div>
+      </div>
+
+      <div class="section-content">
+        <div class="project-actions-bar">
+          <p class="section-instruction">
+            <span class="terminal-prompt">$</span> Click any UI project card or thumbnail image to expand full interactive design specs, responsive features & live demo link.
+          </p>
+
+          <div class="admin-actions">
+            <button class="add-proj-btn" onclick="openAddProjectModal('ui')">
+              [+] ADD UI / UX PROJECT
+            </button>
+          </div>
+        </div>
+
+        <!-- Dynamic UI Projects Grid Rendered via JS -->
+        <div class="projects-grid ui-projects-grid" id="uiProjectsContainer">
+          <!-- Rendered dynamically by script.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 05: TELEMETRY & SKILL METRICS -->
+    <section class="blueprint-section" id="telemetry">
+      <div class="section-header">
+        <div class="sec-left">
+          <span class="sec-num">05</span>
+          <h2 class="sec-title">TELEMETRY — SKILL DISTRIBUTION & GROWTH</h2>
+        </div>
+        <div class="sec-right">~/05-telemetry</div>
+      </div>
+
+      <div class="section-content">
+        <div class="telemetry-grid">
+          
+          <div class="telemetry-col">
+            <h3 class="telemetry-heading">TECHNICAL COMPETENCY MATRIX</h3>
+            
+            <div class="skill-bar-item">
+              <div class="skill-info">
+                <span class="skill-name">FortiGate Firewall & IPsec VPN Management</span>
+                <span class="skill-pct">92%</span>
+              </div>
+              <div class="bar-bg">
+                <div class="bar-fill" style="width: 92%"></div>
+              </div>
+            </div>
+
+            <div class="skill-bar-item">
+              <div class="skill-info">
+                <span class="skill-name">Network Protocols (TCP/IP, VLAN, NAT, Wireshark)</span>
+                <span class="skill-pct">90%</span>
+              </div>
+              <div class="bar-bg">
+                <div class="bar-fill" style="width: 90%"></div>
+              </div>
+            </div>
+
+            <div class="skill-bar-item">
+              <div class="skill-info">
+                <span class="skill-name">Web UI & Front-end Component Systems (HTML/CSS/JS)</span>
+                <span class="skill-pct">89%</span>
+              </div>
+              <div class="bar-bg">
+                <div class="bar-fill" style="width: 89%"></div>
+              </div>
+            </div>
+
+            <div class="skill-bar-item">
+              <div class="skill-info">
+                <span class="skill-name">Python Scripting & Automation (Scapy, Sockets)</span>
+                <span class="skill-pct">88%</span>
+              </div>
+              <div class="bar-bg">
+                <div class="bar-fill" style="width: 88%"></div>
+              </div>
+            </div>
+
+            <div class="skill-bar-item">
+              <div class="skill-info">
+                <span class="skill-name">SOC Monitoring, IPS & Web Filtering</span>
+                <span class="skill-pct">85%</span>
+              </div>
+              <div class="bar-bg">
+                <div class="bar-fill" style="width: 85%"></div>
+              </div>
+            </div>
+
+            <div class="skill-bar-item">
+              <div class="skill-info">
+                <span class="skill-name">AI / ML Threat Analytics (Scikit-learn, NLP)</span>
+                <span class="skill-pct">82%</span>
+              </div>
+              <div class="bar-bg">
+                <div class="bar-fill" style="width: 82%"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="telemetry-col">
+            <h3 class="telemetry-heading">OPERATIONAL TELEMETRY</h3>
+            
+            <div class="stat-boxes-grid">
+              <div class="stat-box">
+                <span class="stat-number" id="statCertCount">08</span>
+                <span class="stat-label">SECURITY CERTS</span>
+              </div>
+              <div class="stat-box">
+                <span class="stat-number" id="statProjCount">06</span>
+                <span class="stat-label">ACTIVE PROJECTS</span>
+              </div>
+              <div class="stat-box">
+                <span class="stat-number">7.67</span>
+                <span class="stat-label">VIT CGPA / 10</span>
+              </div>
+              <div class="stat-box">
+                <span class="stat-number">100%</span>
+                <span class="stat-label">SYSTEM UPTIME</span>
+              </div>
+            </div>
+
+            <div class="telemetry-log">
+              <div class="log-line"><span class="log-time">[09:55:12]</span> <span class="log-tag">[SYS]</span> FortiGate Security Policy inspection engine running cleanly.</div>
+              <div class="log-line"><span class="log-time">[09:55:18]</span> <span class="log-tag">[UI]</span> Responsive UI component framework & stylesheet initialized.</div>
+              <div class="log-line"><span class="log-time">[09:55:25]</span> <span class="log-tag">[AI]</span> Threat detection model evaluate F1 precision score: 0.94.</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 06: THE ROUTE (CAREER & EDUCATION TIMELINE) -->
+    <section class="blueprint-section" id="timeline">
+      <div class="section-header">
+        <div class="sec-left">
+          <span class="sec-num">06</span>
+          <h2 class="sec-title">THE ROUTE — CAREER & EDUCATION TIMELINE</h2>
+        </div>
+        <div class="sec-right">~/06-journey</div>
+      </div>
+
+      <div class="section-content">
+        <div class="timeline-graphic-container">
+          <div class="axis-line">
+            <div class="active-pulse-stream"></div>
+          </div>
+
+          <div class="timeline-nodes-row">
+            <div class="t-node">
+              <div class="t-circle"></div>
+              <div class="t-year">2023</div>
+              <div class="t-title">BCA (AIML)</div>
+              <div class="t-sub">starts, VIT</div>
+            </div>
+            <div class="t-node">
+              <div class="t-circle"></div>
+              <div class="t-year">2025</div>
+              <div class="t-title">Techgentsia</div>
+              <div class="t-sub">web UI intern</div>
+            </div>
+            <div class="t-node">
+              <div class="t-circle"></div>
+              <div class="t-year">2026</div>
+              <div class="t-title">BCA (AIML)</div>
+              <div class="t-sub">completed, VIT (7.67)</div>
+            </div>
+            <div class="t-node">
+              <div class="t-circle"></div>
+              <div class="t-year">2026</div>
+              <div class="t-title">Secure Solutions</div>
+              <div class="t-sub">network security intern</div>
+            </div>
+            <div class="t-node t-node-active">
+              <div class="t-circle t-circle-active"></div>
+              <div class="t-year highlight-green">NOW</div>
+              <div class="t-title">Open to Roles</div>
+              <div class="t-sub">Analyst / UI Developer</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-details-list">
+          <div class="timeline-entry">
+            <div class="entry-meta">
+              <span class="entry-period">2026</span>
+              <span class="entry-company">Secure Solutions — Network Security Intern</span>
+              <span class="entry-loc">Kochi, India</span>
+            </div>
+            <p class="entry-desc">
+              Installed, configured & managed FortiGate firewalls, IPsec VPNs, firewall policies, NAT, VLANs, IPS, Web Filtering & security log monitoring across enterprise topologies.
+            </p>
+          </div>
+
+          <div class="timeline-entry">
+            <div class="entry-meta">
+              <span class="entry-period">2025</span>
+              <span class="entry-company">Techgentsia Software Technologies — Web UI Development Intern</span>
+              <span class="entry-loc">Infopark Pallipuram</span>
+            </div>
+            <p class="entry-desc">
+              Assisted in building responsive front-end user interfaces and collaborated with cross-functional development teams on UI testing & performance optimization activities.
+            </p>
+          </div>
+
+          <div class="timeline-entry">
+            <div class="entry-meta">
+              <span class="entry-period">2023 – 2026</span>
+              <span class="entry-company">Vellore Institute of Technology (VIT) — BCA (AIML Specialization)</span>
+              <span class="entry-loc">Vellore, Tamil Nadu</span>
+            </div>
+            <p class="entry-desc">
+              Graduated with CGPA 7.67/10. Focused curriculum on artificial intelligence, machine learning, data structures, network security, and Python programming.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 07: STACK & TECHNICAL COMPETENCY -->
+    <section class="blueprint-section" id="stack">
+      <div class="section-header">
+        <div class="sec-left">
+          <span class="sec-num">07</span>
+          <h2 class="sec-title">STACK — TECHNICAL COMPETENCIES</h2>
+        </div>
+        <div class="sec-right">~/07-stack</div>
+      </div>
+
+      <div class="section-content">
+        <div class="stack-rows-container">
+
+          <div class="stack-row">
+            <div class="stack-cat">FIREWALLS & SECURITY</div>
+            <div class="stack-items">
+              <span class="stack-badge">FortiGate Firewall Management</span>
+              <span class="stack-badge">IPsec VPN</span>
+              <span class="stack-badge">NAT</span>
+              <span class="stack-badge">VLAN</span>
+              <span class="stack-badge">IPS</span>
+              <span class="stack-badge">Web Filtering</span>
+              <span class="stack-badge">Application Control</span>
+            </div>
+          </div>
+
+          <div class="stack-row">
+            <div class="stack-cat">WEB UI & FRONT-END</div>
+            <div class="stack-items">
+              <span class="stack-badge">HTML5</span>
+              <span class="stack-badge">CSS3 / Vanilla CSS</span>
+              <span class="stack-badge">JavaScript (ES6+)</span>
+              <span class="stack-badge">Responsive Design</span>
+              <span class="stack-badge">UI/UX Design</span>
+              <span class="stack-badge">DOM Manipulation</span>
+            </div>
+          </div>
+
+          <div class="stack-row">
+            <div class="stack-cat">NETWORKING & PROTOCOLS</div>
+            <div class="stack-items">
+              <span class="stack-badge">TCP/IP</span>
+              <span class="stack-badge">Wireshark</span>
+              <span class="stack-badge">Nmap</span>
+              <span class="stack-badge">Scapy</span>
+              <span class="stack-badge">Socket Programming</span>
+            </div>
+          </div>
+
+          <div class="stack-row">
+            <div class="stack-cat">PROGRAMMING & SCRIPTING</div>
+            <div class="stack-items">
+              <span class="stack-badge">Python</span>
+              <span class="stack-badge">Linux Shell / Bash</span>
+              <span class="stack-badge">SQL</span>
+            </div>
+          </div>
+
+          <div class="stack-row">
+            <div class="stack-cat">AI / ML & ANALYTICS</div>
+            <div class="stack-items">
+              <span class="stack-badge">Scikit-learn</span>
+              <span class="stack-badge">Anomaly Detection</span>
+              <span class="stack-badge">NLTK</span>
+              <span class="stack-badge">TF-IDF</span>
+              <span class="stack-badge">CountVectorizer</span>
+              <span class="stack-badge">Streamlit</span>
+            </div>
+          </div>
+
+          <div class="stack-row">
+            <div class="stack-cat">DEVELOPMENT TOOLS</div>
+            <div class="stack-items">
+              <span class="stack-badge">Git</span>
+              <span class="stack-badge">GitHub</span>
+              <span class="stack-badge">Jupyter Notebook</span>
+              <span class="stack-badge">VS Code</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 08: CERTIFICATIONS & UPLOADED BADGES -->
+    <section class="blueprint-section" id="certifications">
+      <div class="section-header">
+        <div class="sec-left">
+          <span class="sec-num">08</span>
+          <h2 class="sec-title">CERTIFICATIONS & UPLOADED BADGES</h2>
+        </div>
+        <div class="sec-right">~/08-certs</div>
+      </div>
+
+      <div class="section-content">
+        <div class="cert-actions-bar">
+          <p class="section-instruction">
+            <span class="terminal-prompt">$</span> Click any certification badge to view the full document preview.
+          </p>
+
+          <button class="add-cert-btn" onclick="openAddCertModal()">
+            [+] UPLOAD / ADD CERTIFICATE
+          </button>
+        </div>
+
+        <!-- Dynamic Certifications Grid Rendered via JS -->
+        <div class="certs-grid" id="certsContainer">
+          <!-- Rendered dynamically by script.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 09: CLI TERMINAL & DIRECT CONTACT -->
+    <section class="blueprint-section" id="terminal-section">
+      <div class="section-header">
+        <div class="sec-left">
+          <span class="sec-num">09</span>
+          <h2 class="sec-title">INTERACTIVE TERMINAL & CONTACT PIPELINE</h2>
+        </div>
+        <div class="sec-right">~/09-contact</div>
+      </div>
+
+      <div class="section-content">
+        <div class="contact-split">
+          
+          <div class="terminal-container">
+            <div class="terminal-header">
+              <span class="t-dot red"></span>
+              <span class="t-dot yellow"></span>
+              <span class="t-dot green"></span>
+              <span class="t-title">arjun@sec-terminal:~</span>
+            </div>
+            
+            <div class="terminal-body" id="terminalOutput">
+              <div class="t-line">Welcome to Arjun's Security & Web UI Operations CLI [v2.5]</div>
+              <div class="t-line">Type <span class="t-cmd">'help'</span> or click the command chips below to run commands.</div>
+              <div class="t-line">&nbsp;</div>
+            </div>
+
+            <div class="terminal-chips">
+              <button class="chip-btn" onclick="runCliCommand('whoami')">whoami</button>
+              <button class="chip-btn" onclick="runCliCommand('projects')">projects</button>
+              <button class="chip-btn" onclick="runCliCommand('skills')">skills</button>
+              <button class="chip-btn" onclick="runCliCommand('certs')">certs</button>
+              <button class="chip-btn" onclick="runCliCommand('contact')">contact</button>
+              <button class="chip-btn" onclick="runCliCommand('clear')">clear</button>
+            </div>
+
+            <form id="terminalForm" class="terminal-input-row" onsubmit="handleCliSubmit(event)">
+              <span class="t-prompt">arjun@sec:~$</span>
+              <input type="text" id="cliInput" class="t-input" autocomplete="off" placeholder="type a command e.g. help..." />
+            </form>
+          </div>
+
+          <div class="contact-form-container">
+            <h3 class="contact-heading">TRANSMIT DIRECT MESSAGE</h3>
+            <p class="contact-sub">Direct pipeline to <a href="mailto:arjunkb45@gmail.com">arjunkb45@gmail.com</a></p>
+
+            <form id="contactForm" class="tech-form" onsubmit="handleContactSubmit(event)">
+              <div class="form-group">
+                <label for="contactName" class="form-label">SENDER NAME / ORGANIZATION</label>
+                <input type="text" id="contactName" required class="form-input" placeholder="e.g. Hiring Manager / Recruiter" />
+              </div>
+
+              <div class="form-group">
+                <label for="contactEmail" class="form-label">RETURN EMAIL ADDRESS</label>
+                <input type="email" id="contactEmail" required class="form-input" placeholder="e.g. hr@company.com" />
+              </div>
+
+              <div class="form-group">
+                <label for="contactMessage" class="form-label">SECURITY & UI TRANSMISSION / MESSAGE</label>
+                <textarea id="contactMessage" required rows="4" class="form-input" placeholder="Write your message, project inquiry, or role details here..."></textarea>
+              </div>
+
+              <button type="submit" class="submit-btn">
+                [⇒] DISPATCH MESSAGE TO ARJUN
+              </button>
+
+              <div id="contactStatus" class="contact-status-msg"></div>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="tech-footer">
+    <div class="footer-container">
+      <div class="footer-left">
+        <span>EN · TA · HI · ML</span> &nbsp;·&nbsp; 
+        <a href="mailto:arjunkb45@gmail.com">arjunkb45@gmail.com</a> &nbsp;·&nbsp; 
+        <span>Kochi, Kerala, India</span>
+      </div>
+      <div class="footer-right">
+        <span>DESIGN SYSTEM: CAD BLUEPRINT & BLACK CYBER TERMINAL // ARJUN KRISHNA B © 2026</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- GENERAL INSPECTOR / DETAILS MODAL -->
+  <div id="inspectorModal" class="modal-backdrop" onclick="closeInspectorModal(event)">
+    <div class="modal-card" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <span class="modal-title" id="modalTitle">INSPECTOR // DETAILS</span>
+        <button class="modal-close-btn" onclick="closeModalDirect('inspectorModal')">[×] CLOSE</button>
+      </div>
+      <div class="modal-body" id="modalBody">
+        <!-- Dynamic content -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ADD / EDIT PROJECT MODAL -->
+  <div id="projectModal" class="modal-backdrop" onclick="closeModalDirect('projectModal')">
+    <div class="modal-card" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <span class="modal-title" id="projectModalTitle">MANAGE // PROJECT</span>
+        <button class="modal-close-btn" onclick="closeModalDirect('projectModal')">[×] CLOSE</button>
+      </div>
+      <div class="modal-body">
+        <form id="projectForm" onsubmit="saveProjectForm(event)" class="tech-form">
+          <input type="hidden" id="editProjectId" value="" />
+          
+          <div class="form-group">
+            <label for="projTitleInput" class="form-label">PROJECT TITLE</label>
+            <input type="text" id="projTitleInput" required class="form-input" placeholder="e.g. E-Commerce UI System" />
+          </div>
+
+          <div class="form-group">
+            <label for="projCategoryInput" class="form-label">PRIMARY CATEGORY</label>
+            <select id="projCategoryInput" class="form-input">
+              <option value="ui">UI / UX Development</option>
+              <option value="security">Security Ops</option>
+              <option value="ml">ML & AI</option>
+              <option value="python">Python Tools</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="projDescInput" class="form-label">PROJECT DESCRIPTION</label>
+            <textarea id="projDescInput" required rows="3" class="form-input" placeholder="Overview of features, architecture, and results..."></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="projTagsInput" class="form-label">TECH TAGS (COMMA SEPARATED)</label>
+            <input type="text" id="projTagsInput" class="form-input" placeholder="e.g. HTML5, CSS3, JAVASCRIPT, FIGMA" />
+          </div>
+
+          <div class="form-group">
+            <label for="projLinkInput" class="form-label">LIVE DEMO / GITHUB LINK (OPTIONAL)</label>
+            <input type="url" id="projLinkInput" class="form-input" placeholder="https://..." />
+          </div>
+
+          <div class="form-group">
+            <label for="projThumbnailInput" class="form-label">PROJECT THUMBNAIL IMAGE (UPLOAD FILE OR URL)</label>
+            <input type="file" id="projThumbnailFileInput" accept="image/*" class="form-input" onchange="handleThumbnailFileUpload(event)" />
+            <input type="text" id="projThumbnailUrlInput" class="form-input" placeholder="Or paste image URL (e.g. https://...)" style="margin-top:6px;" />
+            
+            <div id="thumbnailPreviewBox" class="thumbnail-preview-box">
+              <span class="preview-placeholder">Image Preview</span>
+            </div>
+          </div>
+
+          <button type="submit" class="submit-btn" style="margin-top:10px;">
+            [✓] SAVE PROJECT TO PORTFOLIO
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- ADD / UPLOAD / EDIT CERTIFICATE MODAL -->
+  <div id="certModal" class="modal-backdrop" onclick="closeModalDirect('certModal')">
+    <div class="modal-card" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <span class="modal-title" id="certModalTitle">UPLOAD // CERTIFICATE BADGE</span>
+        <button class="modal-close-btn" onclick="closeModalDirect('certModal')">[×] CLOSE</button>
+      </div>
+      <div class="modal-body">
+        <form id="certForm" onsubmit="saveCertForm(event)" class="tech-form">
+          <input type="hidden" id="editCertId" value="" />
+
+          <div class="form-group">
+            <label for="certTitleInput" class="form-label">CERTIFICATE TITLE</label>
+            <input type="text" id="certTitleInput" required class="form-input" placeholder="e.g. AWS Certified Solutions Architect" />
+          </div>
+
+          <div class="form-group">
+            <label for="certIssuerInput" class="form-label">ISSUING ORGANIZATION</label>
+            <input type="text" id="certIssuerInput" required class="form-input" placeholder="e.g. Cisco / Oracle / IBM" />
+          </div>
+
+          <div class="form-group">
+            <label for="certDateInput" class="form-label">ISSUE YEAR / DATE</label>
+            <input type="text" id="certDateInput" class="form-input" placeholder="e.g. 2026" />
+          </div>
+
+          <div class="form-group">
+            <label for="certFileInput" class="form-label">UPLOAD CERTIFICATE FILE (PDF OR IMAGE)</label>
+            <input type="file" id="certFileInput" accept="image/*,application/pdf" class="form-input" onchange="handleCertFileUpload(event)" />
+            <span style="font-size:0.75rem; color:var(--text-subtle); display:block; margin-top:3px;">Select a PDF certificate or image badge file to upload to backend server storage</span>
+            <input type="text" id="certUrlInput" class="form-input" placeholder="Or paste document/badge URL (https://...)" style="margin-top:6px;" />
+          </div>
+
+          <div id="certPreviewBox" class="cert-preview-box">
+            <span class="preview-placeholder">Document Preview</span>
+          </div>
+
+          <button type="submit" class="submit-btn" style="margin-top:10px;">
+            [✓] SAVE & PUBLISH CERTIFICATE
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- VIEW CERTIFICATE VIEWER MODAL -->
+  <div id="certViewerModal" class="modal-backdrop" onclick="closeModalDirect('certViewerModal')">
+    <div class="modal-card" style="max-width:760px;" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <span class="modal-title" id="certViewerTitle">CERTIFICATE VIEWER</span>
+        <button class="modal-close-btn" onclick="closeModalDirect('certViewerModal')">[×] CLOSE</button>
+      </div>
+      <div class="modal-body" id="certViewerBody">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+  </div>
+  
+  <!-- MESSAGES VIEWER MODAL -->
+  <div id="messagesModal" class="modal-backdrop" onclick="closeModalDirect('messagesModal')">
+    <div class="modal-card" style="max-width:680px;" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <span class="modal-title">INBOX // TRANSMITTED MESSAGES</span>
+        <button class="modal-close-btn" onclick="closeModalDirect('messagesModal')">[×] CLOSE</button>
+      </div>
+      <div class="modal-body" id="messagesModalBody">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+  </div>
+  
+  <!-- ADMIN SUDO COMMAND PROMPT AUTHENTICATION MODAL -->
+  <div id="adminAuthModal" class="modal-backdrop" onclick="closeModalDirect('adminAuthModal')">
+    <div class="modal-card sudo-cli-card" style="max-width:520px;" onclick="event.stopPropagation()">
+      <div class="sudo-cli-header">
+        <div class="cli-window-controls">
+          <span class="cli-dot dot-red" onclick="closeModalDirect('adminAuthModal')"></span>
+          <span class="cli-dot dot-yellow"></span>
+          <span class="cli-dot dot-green"></span>
+        </div>
+        <span class="sudo-cli-title">bash — arjun@sec-soc-ops: sudo authentication</span>
+        <button class="modal-close-btn cli-close" onclick="closeModalDirect('adminAuthModal')">[×]</button>
+      </div>
+
+      <div class="sudo-cli-body">
+        <div class="sudo-cli-log">
+          <div class="cli-line"><span class="cli-user">arjun@sec-soc-ops</span>:<span class="cli-path">~</span>$ sudo systemctl enable manage-mode</div>
+          <div class="cli-line cli-prompt-text">[sudo] password for arjun:</div>
+        </div>
+
+        <form onsubmit="submitAdminPasscode(event)" class="sudo-cli-form">
+          <div class="sudo-input-wrapper">
+            <span class="sudo-prompt-symbol">&gt;</span>
+            <input type="password" id="adminPasscodeKey" required autocomplete="off" class="sudo-cli-input" placeholder="Type Admin Passcode..." />
+            <span class="cli-blinking-cursor">▋</span>
+          </div>
+
+          <div id="adminAuthStatus" class="sudo-status-output"></div>
+
+          <div class="sudo-actions-bar">
+            <button type="submit" class="submit-btn sudo-btn">
+              [ENTER] AUTHENTICATE SUDO
+            </button>
+            <button type="button" class="tech-btn" onclick="closeModalDirect('adminAuthModal')">
+              CANCEL
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHANGE ADMIN PASSCODE MODAL -->
+  <div id="changePasscodeModal" class="modal-backdrop" onclick="closeModalDirect('changePasscodeModal')">
+    <div class="modal-card" style="max-width:460px;" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <span class="modal-title">SECURITY // CHANGE ADMIN PASSCODE</span>
+        <button class="modal-close-btn" onclick="closeModalDirect('changePasscodeModal')">[×] CLOSE</button>
+      </div>
+      <div class="modal-body">
+        <form onsubmit="submitChangePasscode(event)" class="tech-form">
+          <div class="form-group">
+            <label for="currPasscode" class="form-label">CURRENT ADMIN PASSCODE</label>
+            <input type="password" id="currPasscode" required autocomplete="off" class="form-input" placeholder="Enter current passcode..." />
+          </div>
+
+          <div class="form-group">
+            <label for="newPasscode" class="form-label">NEW ADMIN PASSCODE (MIN 4 CHARS)</label>
+            <input type="password" id="newPasscode" required autocomplete="off" class="form-input" placeholder="Enter new passcode..." />
+          </div>
+
+          <div class="form-group">
+            <label for="confirmPasscode" class="form-label">CONFIRM NEW PASSCODE</label>
+            <input type="password" id="confirmPasscode" required autocomplete="off" class="form-input" placeholder="Re-type new passcode..." />
+          </div>
+
+          <div id="changePassStatus" style="font-size:0.775rem; min-height:20px; margin-bottom:10px;"></div>
+
+          <button type="submit" class="submit-btn">
+            [✓] UPDATE ADMIN PASSCODE
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- EDIT PORTFOLIO LINK MODAL -->
+  <div id="editPortfolioModal" class="modal-backdrop" onclick="closeModalDirect('editPortfolioModal')">
+    <div class="modal-card" style="max-width:460px;" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <span class="modal-title">SETTINGS // UPDATE PORTFOLIO LINK</span>
+        <button class="modal-close-btn" onclick="closeModalDirect('editPortfolioModal')">[×] CLOSE</button>
+      </div>
+      <div class="modal-body">
+        <form onsubmit="submitPortfolioLink(event)" class="tech-form">
+          <div class="form-group">
+            <label for="portfolioUrlInput" class="form-label">PRIMARY PORTFOLIO URL</label>
+            <input type="url" id="portfolioUrlInput" required class="form-input" placeholder="https://arjunportfolio.super.site" />
+          </div>
+
+          <div id="portfolioLinkStatus" style="font-size:0.775rem; min-height:20px; margin-bottom:10px;"></div>
+
+          <button type="submit" class="submit-btn">
+            [✓] SAVE PORTFOLIO LINK
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hidden File Input for Direct PDF Upload in Viewer Modal -->
+  <input type="file" id="certViewerPdfInput" accept="application/pdf,image/*" style="display:none;" onchange="handleDirectCertPdfUpload(event)" />
+  <!-- Hidden File Input for Profile Photo Upload -->
+  <input type="file" id="profilePhotoFileInput" accept="image/*" style="display:none;" onchange="handleProfilePhotoFileUpload(event)" />
+
+  <script src="script.js"></script>
+</body>
+</html>

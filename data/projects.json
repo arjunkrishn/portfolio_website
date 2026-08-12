@@ -1,0 +1,167 @@
+[
+  {
+    "id": "p5",
+    "title": "Earth\u00e9",
+    "category": "ui",
+    "desc": "Reveal your natural glow with skincare inspired by nature\u2019s purity.",
+    "tags": [
+      "HTML5",
+      "CSS3",
+      "JAVASCRIPT",
+      "UI/UX DESIGN",
+      "RESPONSIVE",
+      "COMPONENT_LIB"
+    ],
+    "thumbnail": "/uploads/beauty_1786511138341.jpg",
+    "link": "https://arjunportfolio.super.site"
+  },
+  {
+    "id": "p6",
+    "title": "Security Dashboard & Cyber Blueprint Interface",
+    "category": "ui",
+    "desc": "Verdelle brings the quiet beauty of nature into your everyday spaces.",
+    "tags": [
+      "VANILLA CSS",
+      "SVG BLUEPRINT",
+      "DARK MODE",
+      "DOM API",
+      "UI DESIGN"
+    ],
+    "thumbnail": "/uploads/verdelle_1786511277873.jpg",
+    "link": ""
+  },
+  {
+    "id": "p3",
+    "title": "Real-Time Terminal Network Packet Sniffer & Traffic Analyzer",
+    "category": "security",
+    "desc": "A high-performance Python terminal network packet sniffer designed for live packet capture, raw socket header decoding (Ethernet II, IPv4/IPv6, TCP, UDP, ICMP, ARP, HTTP, DNS), real-time suspicious traffic detection (port scans, SYN floods, ARP spoofing), and dual-format export (.pcap for Wireshark & .csv).",
+    "tags": [
+      "PYTHON",
+      "RAW SOCKETS",
+      "SCAPY",
+      "WIRESHARK",
+      "PCAP EXPORT",
+      "TCP/IP",
+      "THREAT DETECTION"
+    ],
+    "thumbnail": "/uploads/Screenshot_2026-08-12_113931_1786527114903.png",
+    "link": "https://github.com"
+  },
+  {
+    "id": "p1",
+    "title": "Fake Job Posting Detection Using ML & NLP",
+    "category": "ml python",
+    "desc": "Developed an intelligent fraud detection system to classify job postings as genuine or fraudulent using Machine Learning & Natural Language Processing. Implemented TF-IDF & CountVectorizer feature extraction with rigorous F1-score testing.",
+    "tags": [
+      "PYTHON",
+      "SCIKIT-LEARN",
+      "PANDAS",
+      "NLTK",
+      "TF-IDF",
+      "JUPYTER"
+    ],
+    "thumbnail": "",
+    "link": "https://github.com"
+  },
+  {
+    "id": "p2",
+    "title": "Vulnerability Scanner Using Python",
+    "category": "security",
+    "desc": "Developed a high-concurrency Python vulnerability scanner for automated host discovery, multi-threaded port scanning, service enumeration, and CVE triage. Generates structured JSON reports for risk mitigation.",
+    "tags": [
+      "PYTHON",
+      "NMAP",
+      "SOCKETS",
+      "TCP/IP",
+      "THREADING",
+      "LINUX"
+    ],
+    "thumbnail": "/uploads/Screenshot_2026-08-12_113348_1786514810653.png",
+    "link": ""
+  },
+  {
+    "id": "p_1786512157662",
+    "title": "Oak & Ivory",
+    "category": "ui",
+    "desc": "Oak & Ivory is where timeless craftsmanship meets natural elegance\u2014curating furniture and d\u00e9cor that bring warmth, beauty, and balance to every space.",
+    "tags": [
+      "HTML5",
+      "CSS3",
+      "JAVASCRIPT",
+      "UI/UX DESIGN",
+      "RESPONSIVE",
+      "COMPONENT_LIB"
+    ],
+    "link": "",
+    "thumbnail": "/uploads/furniture_1786512151537.jpg"
+  },
+  {
+    "id": "p_1786512549726",
+    "title": "Rigear Desktop",
+    "category": "ui",
+    "desc": "Rigear Desktop is a software company specializing in custom web applications, digital solutions, and technology-driven innovation, empowering businesses to grow in a rapidly evolving digital world.",
+    "tags": [
+      "PROJECT"
+    ],
+    "link": "https://www.figma.com/proto/GGoLnfy5cG33GybJ9EDmsn/rigear-desk?node-id=0-1&t=0a3oO4gv7In0aD5W-1",
+    "thumbnail": "/uploads/Screenshot_2026-08-12_105755_1786512527203.png"
+  },
+  {
+    "id": "p_1786512768084",
+    "title": "Rigear Mobile",
+    "category": "ui",
+    "desc": "Rigear Mobile is a mobile application development company dedicated to building scalable, high-performance, and user-friendly digital products for businesses and consumers.",
+    "tags": [
+      "PROJECT"
+    ],
+    "link": "https://www.figma.com/proto/VJm1tS9dCozXhi1EvaZtDg/rigear-mob?node-id=0-1&t=0a3oO4gv7In0aD5W-1",
+    "thumbnail": "/uploads/Screenshot_2026-08-12_110221_1786512752355.png"
+  },
+  {
+    "id": "p_1786512975489",
+    "title": "DashCore",
+    "category": "ui",
+    "desc": "DashCore is a statistics and analytics website designed to help users explore, visualize, and understand data through intuitive dashboards, detailed reports, and actionable insights.",
+    "tags": [
+      "HTML5",
+      "CSS3",
+      "JAVASCRIPT",
+      "UI/UX DESIGN",
+      "RESPONSIVE",
+      "COMPONENT_LIB"
+    ],
+    "link": "https://www.figma.com/proto/fwKCeq104142LaNwioNH7w/dashcore?t=0a3oO4gv7In0aD5W-1",
+    "thumbnail": "/uploads/Screenshot_2026-08-12_110547_1786512956815.png"
+  },
+  {
+    "id": "p_1786513086678",
+    "title": "Snitch it. Wear it.",
+    "category": "ui",
+    "desc": "Snitch is a contemporary fashion platform for men, offering stylish clothing and accessories that combine modern trends with everyday comfort. Its clean shopping experience and curated collections make fashion accessible and effortless.",
+    "tags": [
+      "HTML5",
+      "CSS3",
+      "JAVASCRIPT",
+      "UI/UX DESIGN",
+      "RESPONSIVE",
+      "COMPONENT_LIB"
+    ],
+    "link": "https://www.figma.com/proto/c6SIQAsyL3k0vlIepf8QdR/snitch?t=0a3oO4gv7In0aD5W-1",
+    "thumbnail": "/uploads/Screenshot_2026-08-12_105333_1786513042820.png"
+  },
+  {
+    "id": "p_1786527285664",
+    "title": "AI THREAT DETECTION SYSTEM",
+    "category": "security",
+    "desc": "Constructed an AI-driven threat monitoring system that automatically detects malicious telemetry patterns in enterprise traffic data. Features Isolation Forest anomaly detection models and an interactive Streamlit dashboard.",
+    "tags": [
+      "PYTHON",
+      "SCIKIT-LEARN",
+      "STREAMLIT",
+      "ANOMALY_DETECTION",
+      "NUMPY"
+    ],
+    "link": "https://github.com/arjunkrishn/AI-Threat-Detection-System",
+    "thumbnail": "/uploads/Screenshot_2026-08-12_112913_1786527277423.png"
+  }
+]

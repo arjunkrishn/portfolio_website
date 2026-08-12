@@ -72,56 +72,56 @@ const DEFAULT_CERTS = [
     title: 'Junior Cybersecurity Analyst Career Path',
     issuer: 'Cisco Networking Academy',
     date: '2026',
-    fileUrl: ''
+    fileUrl: './uploads/junior_cybersecurity_analyst_career_path_certificate_arjunkb45-gmail-com_062831bc-a2db-48f2-9350-6410dbaf925c_1786509668001.pdf'
   },
   {
     id: 'c2',
     title: 'Endpoint Security',
     issuer: 'Oracle Cloud Infrastructure',
     date: '2025',
-    fileUrl: ''
+    fileUrl: './uploads/endpoint_security_certificate_arjunkb45-gmail-com_80f7824d-4cd5-4c14-a7be-9a834c2254aa_1786509333797.pdf'
   },
   {
     id: 'c3',
     title: 'Certified AI Foundations Associate',
     issuer: 'Oracle Certified Professional',
     date: '2025',
-    fileUrl: ''
+    fileUrl: './uploads/oracle_ai_1786509721087.pdf'
   },
   {
     id: 'c4',
     title: 'Getting Started with Cybersecurity',
     issuer: 'IBM',
     date: '2024',
-    fileUrl: ''
+    fileUrl: './uploads/ibmdesign20260801-8-m29cn4_1786509677703.pdf'
   },
   {
     id: 'c5',
     title: 'Network Support and Security',
     issuer: 'Cisco / Industry Credential',
     date: '2025',
-    fileUrl: ''
+    fileUrl: './uploads/network_support_and_security_certificate_arjunkb45-gmail-com_179b63d5-455c-4423-9552-7f32e47baa11_1786509685565.pdf'
   },
   {
     id: 'c6',
     title: 'OCI Certified Foundations Associate',
     issuer: 'Oracle Cloud Infrastructure',
     date: '2025',
-    fileUrl: ''
+    fileUrl: './uploads/oracle_cloud_1786509731311.pdf'
   },
   {
     id: 'c7',
     title: 'Cyber Threat Management',
     issuer: 'Cisco / Security Operations',
     date: '2025',
-    fileUrl: ''
+    fileUrl: './uploads/cyber_threat_management_certificate_arjunkb45-gmail-com_8f8b8448-341b-4413-9859-4fccd3d3889c_1786509738001.pdf'
   },
   {
     id: 'c8',
     title: 'Oracle AI Database Certified Associate',
     issuer: 'Oracle',
     date: '2025',
-    fileUrl: ''
+    fileUrl: './uploads/oracle_database_1786509437559.pdf'
   }
 ];
 
@@ -138,10 +138,17 @@ document.addEventListener('DOMContentLoaded', () => {
   initTerminal();
 });
 
+function normalizeAssetUrl(url) {
+  if (!url) return '';
+  if (url.startsWith('/uploads/')) return '.' + url;
+  return url;
+}
+
 /* --------------------------------------------------------------------------
    01. DATASET INITIALIZATION & PERSISTENCE WITH BACKEND API SYNC
    -------------------------------------------------------------------------- */
 async function loadDatasets() {
+  // 1. Load Projects
   try {
     const projRes = await fetch('/api/projects');
     if (projRes.ok) {
@@ -150,14 +157,24 @@ async function loadDatasets() {
       throw new Error('Projects API offline');
     }
   } catch (e) {
-    const savedProjects = localStorage.getItem('arjun_portfolio_projects_v2');
-    if (savedProjects) {
-      try { projectsData = JSON.parse(savedProjects); } catch (err) { projectsData = DEFAULT_PROJECTS; }
-    } else {
-      projectsData = DEFAULT_PROJECTS;
+    try {
+      const staticProjRes = await fetch('./data/projects.json');
+      if (staticProjRes.ok) {
+        projectsData = await staticProjRes.json();
+      } else {
+        throw new Error('Static projects file missing');
+      }
+    } catch (err2) {
+      const savedProjects = localStorage.getItem('arjun_portfolio_projects_v2');
+      if (savedProjects) {
+        try { projectsData = JSON.parse(savedProjects); } catch (err) { projectsData = DEFAULT_PROJECTS; }
+      } else {
+        projectsData = DEFAULT_PROJECTS;
+      }
     }
   }
 
+  // 2. Load Certs
   try {
     const certRes = await fetch('/api/certs');
     if (certRes.ok) {
@@ -166,30 +183,69 @@ async function loadDatasets() {
       throw new Error('Certs API offline');
     }
   } catch (e) {
-    const savedCerts = localStorage.getItem('arjun_portfolio_certs_v2');
-    if (savedCerts) {
-      try { certsData = JSON.parse(savedCerts); } catch (err) { certsData = DEFAULT_CERTS; }
-    } else {
-      certsData = DEFAULT_CERTS;
+    try {
+      const staticCertRes = await fetch('./data/certs.json');
+      if (staticCertRes.ok) {
+        certsData = await staticCertRes.json();
+      } else {
+        throw new Error('Static certs file missing');
+      }
+    } catch (err2) {
+      const savedCerts = localStorage.getItem('arjun_portfolio_certs_v2');
+      if (savedCerts) {
+        try { certsData = JSON.parse(savedCerts); } catch (err) { certsData = DEFAULT_CERTS; }
+      } else {
+        certsData = DEFAULT_CERTS;
+      }
     }
   }
 
+  // 3. Load Config
   try {
     const configRes = await fetch('/api/config');
     if (configRes.ok) {
       const configData = await configRes.json();
       globalConfig = { ...globalConfig, ...configData };
-      const heroResume = document.getElementById('heroResumeBtn');
-      const heroPort = document.getElementById('heroPortfolioBtn');
-      if (heroResume && configData.resumeUrl) heroResume.href = configData.resumeUrl;
-      if (heroPort && configData.portfolioUrl) heroPort.href = configData.portfolioUrl;
+    } else {
+      throw new Error('Config API offline');
     }
   } catch (e) {
-    const savedConfig = localStorage.getItem('arjun_portfolio_config_v1');
-    if (savedConfig) {
-      try { globalConfig = JSON.parse(savedConfig); } catch (err) {}
+    try {
+      const staticCfgRes = await fetch('./data/admin_config.json');
+      if (staticCfgRes.ok) {
+        const configData = await staticCfgRes.json();
+        globalConfig = { ...globalConfig, ...configData };
+      }
+    } catch (err2) {
+      const savedConfig = localStorage.getItem('arjun_portfolio_config_v1');
+      if (savedConfig) {
+        try { globalConfig = JSON.parse(savedConfig); } catch (err) {}
+      }
     }
   }
+
+  // Normalize URLs for relative static hosting
+  if (Array.isArray(projectsData)) {
+    projectsData.forEach(p => {
+      if (p.thumbnail) p.thumbnail = normalizeAssetUrl(p.thumbnail);
+    });
+  }
+  if (Array.isArray(certsData)) {
+    certsData.forEach(c => {
+      if (c.fileUrl) c.fileUrl = normalizeAssetUrl(c.fileUrl);
+    });
+  }
+  if (globalConfig.resumeUrl) {
+    globalConfig.resumeUrl = normalizeAssetUrl(globalConfig.resumeUrl);
+  }
+  if (globalConfig.profilePhotoUrl) {
+    globalConfig.profilePhotoUrl = normalizeAssetUrl(globalConfig.profilePhotoUrl);
+  }
+
+  const heroResume = document.getElementById('heroResumeBtn');
+  const heroPort = document.getElementById('heroPortfolioBtn');
+  if (heroResume && globalConfig.resumeUrl) heroResume.href = globalConfig.resumeUrl;
+  if (heroPort && globalConfig.portfolioUrl) heroPort.href = globalConfig.portfolioUrl;
 
   renderProjects();
   renderCerts();
